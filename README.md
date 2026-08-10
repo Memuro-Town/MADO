@@ -12,7 +12,15 @@
 中・大規模向けSaaSではなく、**小規模自治体が現場で使い続けられるLITE版**として設計している。
 
 > 📦 **このリポジトリは MADO プロジェクト全体の入口（umbrella）です。**
-> 各機能はパッケージごとに別リポジトリで公開しています。まず動かしたい場合は [MADO-queue](https://github.com/Memuro-Town/MADO-queue) からどうぞ。
+> コードはありません。設計方針・議論・導入一覧を置いています。
+>
+> | リポジトリ | 役割 | 状態 |
+> |---|---|---|
+> | **[MADO](https://github.com/Memuro-Town/MADO)**（ここ） | なぜ作ったか・方針・議論 | — |
+> | **[MADO-queue](https://github.com/Memuro-Town/MADO-queue)** | 番号発券（個人情報なし） | ✅ 公開・本番稼働 |
+> | **[MADO-packages](https://github.com/Memuro-Town/MADO-packages)** | hub / form / care / move | ✅ hub 公開済み（form 以降は順次） |
+>
+> 動かすなら、用途に応じて [MADO-queue](https://github.com/Memuro-Town/MADO-queue) か [MADO-packages](https://github.com/Memuro-Town/MADO-packages) へ。
 
 ---
 
@@ -21,7 +29,7 @@
 ```mermaid
 graph TD
     queue["📟 queue<br/>番号発券 ✅ 本番稼働中"]
-    hub["🗄️ hub<br/>住民情報データ出力<br/>公開準備中"]
+    hub["🗄️ hub<br/>住民情報データ出力<br/>✅ 公開済み"]
     form["📄 form<br/>申請書作成支援<br/>順次公開"]
     care["🕊️ care<br/>おくやみ手続き<br/>順次公開"]
     move["🏠 move<br/>住民異動支援<br/>順次公開"]
@@ -35,13 +43,13 @@ graph TD
 | パッケージ | 説明 | リポジトリ | 状態 |
 |---|---|---|---|
 | **queue** | 番号発券システム | [MADO-queue](https://github.com/Memuro-Town/MADO-queue) | ✅ 本番稼働中 |
-| **hub** | 住民情報データ出力 | （準備中） | 公開準備中 |
-| **form** | 申請書作成支援 | （準備中） | 順次公開（〜2026年10月） |
-| **care** | おくやみ手続き | （準備中） | 順次公開 |
-| **move** | 住民異動支援 | （準備中） | 順次公開 |
+| **hub** | 住民情報データ出力 | [MADO-packages](https://github.com/Memuro-Town/MADO-packages) | ✅ 公開済み（本番稼働中） |
+| **form** | 申請書作成支援 | 同上（`packages/form`） | 順次公開 |
+| **care** | おくやみ手続き | 同上（`packages/care`） | 順次公開 |
+| **move** | 住民異動支援 | 同上（`packages/move`） | 順次公開 |
 
 `queue` は受付ネットワーク上で独立して動作する。庁内システムとのネットワーク接続は不要で、住民の個人情報を扱わない設計になっている。
-`hub` 以降はOSS公開に向けた整備が残っており、2026年10月までに順次公開予定。
+`hub` / `form` / `care` / `move` は閉じた庁内ネットワーク向けで、[MADO-packages](https://github.com/Memuro-Town/MADO-packages) にまとめている。現在は `hub` のみ公開。`form` 以降は整備が済み次第、同じリポジトリに追加する。
 
 ---
 
